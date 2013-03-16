@@ -4,6 +4,8 @@ are specifically in between 1 to n-1 */
 #include <iostream>
 #include <cstring>
 
+using namespace std;
+
 int main(int argc, char const *argv[]) {
 	int n, x;
 	/* get the value of n */
@@ -17,12 +19,12 @@ int main(int argc, char const *argv[]) {
 		cin>>x;
 
 		/* set the value found to be true in the array */
-		arr[x] = true;
+		arr[x-1] = true;
 	}
 
 	for(int i=0; i<n; i++) {
 		if(!arr[i]) {
-			cout<<i<<endl;
+			cout<<i+1<<endl;
 			break;
 		}
 	}
