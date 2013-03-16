@@ -1,0 +1,8 @@
+#ignore backup files
+*~
+
+#object files
+*.o
+
+#executables
+a.out
