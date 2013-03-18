@@ -1,6 +1,11 @@
-/* method 1 */
+/* find the missing number - method 1 */
 /* Here I'll sort the array using turbo sort as the numbers 
-are specifically in between 1 to n-1 */
+are specifically in between 1 to n-1 and then check the 
+final array for the missing number. */
+
+/* Space Complexity = O(n)
+	time Complexity = O(n) */
+
 #include <iostream>
 #include <cstring>
 
