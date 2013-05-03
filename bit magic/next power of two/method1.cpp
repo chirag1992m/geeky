@@ -4,7 +4,7 @@
 	Now, finding the power of 2 will be the required answer. */
 /*
 	space complexity = O(1)
-	time complexity = O(1)	// assuming log(n) take a constant amount of time.
+	time complexity = O(log2(n))	// assuming log(n) take a constant amount of time.
 */
 
 #include <iostream>
