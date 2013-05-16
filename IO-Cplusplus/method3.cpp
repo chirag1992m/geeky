@@ -1,8 +1,13 @@
 /*
-	method 2 - fallback to I/O in C for faster services
+	method 3 - fallback to unlocked I/O in C for much faster services
 
 	Can be used in performance intensive I/O.
-	These are multi-thread safe as they lock the file before before writing.
+	These are NOT multi-thread safe. Should be used in caution.
+	But, in competetive programming platforms, one program is already
+	separated from others, so can easily be used for better I/O in competetive
+	programming.
+
+	I've used register variables to make the I/O even faster (as they reside in registers).
 */
 /*
 source - http://www.codecogs.com/reference/computing/c/stdio.h/
@@ -41,35 +46,56 @@ int setlinebuf (FILE *stream)
 int	ungetc (int c, FILE *stream)
 
 */
-
 #include <cstdio>
-#include <string>
 
-int main() {
-	/* integer I/O */
-	int a;
-	scanf("%d", &a);
-	printf("%d\n", a);
+inline void fastRead_int(int &x) {
+    register int c = getchar_unlocked();
+    x = 0;
+    int neg = 0;
 
-	/*
-        Other format specifiers.
-        %d, %i = signed integer
-        %u = unsigned integer
-        %l = prefix for long
-        %f = signed floating point
-        %e = signed scientific
-        %c = single character
-	*/
+    for(; ((c<48 || c>57) && c != '-'); c = getchar_unlocked());
+    
+    if(c=='-') {
+    	neg = 1;
+    	c = getchar_unlocked();
+    }
+    
+    for(; c>47 && c<58 ; c = getchar_unlocked()) {
+    	x = (x<<1) + (x<<3) + c - 48;
+    }
+    
+    if(neg)
+    	x = -x;
+}
+ 
+inline void fastRead_string(char *str)
+{
+    register char c = 0;
+    register int i = 0;
 
-	/* sting I/O */
-	char charstring[100];
-	scanf("%s", charstring);    // only till the first white space is stored
-	printf("%s\n", charstring);
+    while (c < 33)
+        c = getchar_unlocked();
 
-	scanf("%[^\n]s", charstring);   // sets th delimeter to be "new line"
-	printf("%s\n", charstring); // thus whole line is read until a \n is observed
-								// does not eliminate \n from the input stream
+    while (c != '\n') {
+        str[i] = c;
+        c = getchar_unlocked();
+        i = i + 1;
+    }
+ 
+    str[i] = '\0';
+}
+ 
+ 
+int main()
+{
+ 
+  int n;
+  char s[100];
 
-	gets(charstring);
-	printf("%s\n", charstring);
+  fastRead_int(n);
+  	printf("%d\n", n);
+
+  fastRead_string(s);
+  	printf("%s\n", s);
+  return 0;
 }

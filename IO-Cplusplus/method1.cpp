@@ -1,5 +1,7 @@
 /*
 	method 1 - simple cin/cout
+
+	Should not be used for peformance intensive IO
 */
 /*
 	extract from cplusplus.com
