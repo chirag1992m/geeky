@@ -6,7 +6,18 @@
 */
 
 /* Method 1
-	This is the brute force method to calculate the inversions.*/
+	This is the brute force method to calculate the inversions.
+	For every member of the array, travereses its right part of the array and finds the number of inversions.
+
+	Time Complexity - O(n^2)
+	Space Complexity - O(n) */
+/* Method 2
+	This uses the Divide and conquer methodology by modifying the merge sort to calculate the inversions.
+	When the two parts of the array are merged, for every insertion in the main array from the right part, we add the number of remaining elements in the left array to the count of inversions.
+
+	Time complexity - O(n*log(n))
+	Space complexity - O(n) */
+
 #include <iostream>
 
 using namespace std;
