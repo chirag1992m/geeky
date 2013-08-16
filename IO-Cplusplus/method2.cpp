@@ -66,7 +66,7 @@ int main() {
 	scanf("%s", charstring);    // only till the first white space is stored
 	printf("%s\n", charstring);
 
-	scanf("%[^\n]s", charstring);   // sets th delimeter to be "new line"
+	scanf("%[^\n]s", charstring);   // sets the delimeter to be "new line"
 	printf("%s\n", charstring); // thus whole line is read until a \n is observed
 								// does not eliminate \n from the input stream
 
