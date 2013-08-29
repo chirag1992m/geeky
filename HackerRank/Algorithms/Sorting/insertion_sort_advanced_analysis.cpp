@@ -28,13 +28,14 @@ Sample Output:
 
 using namespace std;
 
-int countInversions(int arr[], int start, int end) {
+long long int countInversions(int arr[], int start, int end) {
 	if((end - start) < 2)
 		return 0;
 
-	int midPoint = ((end - start)/2) + start,
-		count_inversion_1 = 0,
-		count_inversion_2 = 0;
+	int midPoint = ((end - start)/2) + start;
+	long long int count_inversion_1 = 0,
+		count_inversion_2 = 0,
+		mergeInversions = 0;
 
 	count_inversion_1 = countInversions(arr, start, midPoint);
 	count_inversion_2 = countInversions(arr, midPoint, end);
@@ -43,7 +44,6 @@ int countInversions(int arr[], int start, int end) {
 		sizeR = end - midPoint,
 		arrL[sizeL],
 		arrR[sizeR],
-		mergeInversions = 0,
 		size = end-start,
 		r = 0, l = 0;
 
@@ -71,7 +71,8 @@ int countInversions(int arr[], int start, int end) {
 		}
 	}
 
-	return (count_inversion_1 + count_inversion_2 + mergeInversions);
+	mergeInversions += count_inversion_2 + count_inversion_1;
+	return mergeInversions;
 }
 
 int main() {
