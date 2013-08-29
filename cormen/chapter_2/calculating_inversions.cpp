@@ -100,4 +100,6 @@ int main() {
 
 	cout<<"From brute force method: "<<countInversion_method1(arr, size)<<endl;
 	cout<<"From divide-and-conquer paradigm (extending merge sort): "<<countInversion_method2(arr, 0, size)<<endl;
+
+	return 0;
 }
