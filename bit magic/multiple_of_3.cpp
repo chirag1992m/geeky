@@ -1,3 +1,4 @@
+/*
 Write an Efficient Method to Check if a Number is Multiple of 3
 May 30, 2009
 The very first solution that comes to our mind is the one that we learned in school. If sum of digits in a number is multiple of 3 then number is multiple of 3 e.g., for 612 sum of digits is 9 so it’s a multiple of 3. But this solution is not efficient. You have to get all decimal digits one by one, add them and then check if sum is multiple of 3.
@@ -44,3 +45,73 @@ So, if (B + D – A – C) is a multiple of 11 then is ABCD.
 
 This can be continued for all decimal numbers.
 Above concept can be proved for 3 in binary numbers in the same way.
+*/
+
+#include <iostream>
+#define INT_BITS 32
+
+using namespace std;
+
+/* Is a multiple of 3 - method 1 */
+/*
+	It simply ses the modulo operator to do the
+	work.
+*/
+bool multipleOfThree_1(int n) {
+	if(n%3 == 0)
+		return true;
+	else
+		return false;
+}
+
+
+/* Is a multiple of 3 - method 2 */
+/*
+	It checks the difference between the odd places bit set 
+	and even places bit set. If that is a multiple of 3, then
+	the original number is also a multiple of 3.
+*/
+bool multipleOfThree_2(int num)
+{
+	int evenCount = 0,
+		oddCount = 0,
+		checker = 1;
+
+	if(num < 0)
+		num *= -1;
+	if (num == 0)
+		return true;
+	if(num == 1)
+		return false;	
+
+	for (int i=0; i<INT_BITS; i++) {
+		if(checker & num) {
+			if(i%2)
+				oddCount++;
+			else
+				evenCount++;
+		}
+		checker = checker<<1;
+	}
+
+	return multipleOfThree_2(oddCount - evenCount);
+}
+
+int main(int argc, char const *argv[])
+{
+	int num;
+	cout<<"Enter the number: ";
+	cin>>num;
+
+	if(multipleOfThree_1(num))
+		cout<<"YES"<<endl;
+	else
+		cout<<"NO"<<endl;
+
+	if(multipleOfThree_2(num))
+		cout<<"YES"<<endl;
+	else
+		cout<<"NO"<<endl;
+	
+	return 0;
+}
