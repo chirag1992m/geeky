@@ -3,7 +3,7 @@
 
 	This is an implementation of in-place merge sort.
 
-	Time - O(n*log^2(n))
+	Time - O(n*n)
 	auxiliary - O(1)
 */
 #include <iostream>
