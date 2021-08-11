@@ -10,3 +10,6 @@ a.out
 #Python temporary
 *.pyc
 __pycache__
+
+# PyCharm Files
+.idea
